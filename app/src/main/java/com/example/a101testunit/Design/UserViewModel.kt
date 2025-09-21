@@ -20,8 +20,8 @@ class UserViewModel(
 
     init {
         viewModelScope.launch {
-            val response = userNameUseCase.execute()
-            users = response.users
+            users = userNameUseCase()
+
            // Log.d("API", response.users.toString())
         }
     }
