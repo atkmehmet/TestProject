@@ -47,12 +47,22 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `getName returns Mehmet`() = runTest  {
-        val result = viewModel.users
-        var firstName = ""
-         result.forEach {
-             firstName = it.firstName
-         }
-        assertEquals("Mehmet", firstName)
+    fun `repository returns expected response` () = runTest {
+        val repo = FakeUserRepository()
+        val response = repo.getUserName()
+        assertEquals(1,response.users[0].id)
+        assertEquals("Mehmet",response.users[0].firstName)
     }
+
+
+    @Test
+    fun `usecase returns expected user` () = runTest {
+        val repo = FakeUserRepository()
+        val user = GetUserNameUseCase(repo).invoke()
+        assertEquals(1,user.size)
+        assertEquals("Mehmet",user[0].firstName)
+    }
+
+
+
 }
