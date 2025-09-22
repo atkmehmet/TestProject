@@ -15,23 +15,6 @@ import org.junit.Before
 import org.junit.Test
 
 
-class FakeUserRepository: UserRepository {
-    override suspend fun getUserName(): response{
-        return response(
-            limit = 10,
-            users = listOf(
-                User(
-                   id = 1,
-                    firstName = "Mehmet",
-                    lastName = "Durmaz"
-                )
-            ),
-            total =2,
-            skip = 5
-        )
-    }
-}
-
 @OptIn(ExperimentalCoroutinesApi::class)
 class UserViewModelTest {
 
