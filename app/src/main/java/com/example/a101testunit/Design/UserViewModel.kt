@@ -20,7 +20,7 @@ class UserViewModel(
 
     init {
         viewModelScope.launch {
-            users = userNameUseCase()
+            users = userNameUseCase.invoke()
 
            // Log.d("API", response.users.toString())
         }

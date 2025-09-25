@@ -15,13 +15,6 @@ import org.mockito.kotlin.whenever
 @OptIn(ExperimentalCoroutinesApi::class)
 class MockitoUseCase {
 
-val users =  listOf(
-    User(
-        id = 2,
-        firstName = "Mehmet",
-        lastName = "Durmaz"
-    )
-)
     val fakeResponse = response(
         limit = 10,
         total = 2,
@@ -44,7 +37,7 @@ val users =  listOf(
         whenever(repository.getUserName()).thenAnswer { fakeResponse }
         val users = GetUserNameUseCase(repository).invoke()
 
-        assertEquals("Mehmet",users.forEach { it.firstName })
+        assertEquals("Mehmet",users[0].firstName)
         verify(repository).getUserName()
     }
 }
